@@ -8,7 +8,7 @@ dotenv.config();
 
 const server = express();
 const PORT = 3000;
-server.use(express.static("public"));
+server.use(express.static("../public"));
 
 console.log(process.env.DATABASE_URL);
 const db = new pg.Pool({
