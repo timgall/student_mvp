@@ -2,11 +2,13 @@ import express from "express";
 import pg from "pg";
 
 const server = express();
-const PORT = 4000;
+const PORT = 3000;
 
 const db = new pg.Pool({
   database: "mvp",
 });
+
+server.use(express.static("public"));
 
 server.use(express.json());
 
