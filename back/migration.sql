@@ -1,8 +1,9 @@
-DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS bbqrecipes;
 DROP TABLE IF EXISTS bourbonforum;
 DROP TABLE IF EXISTS bbqforum;
-DROP TABLE IF EXISTS bbqrecipes;
 DROP TABLE IF EXISTS bourbonreviews;
+DROP TABLE IF EXISTS users;
+
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
