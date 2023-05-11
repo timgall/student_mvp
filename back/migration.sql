@@ -9,6 +9,7 @@ CREATE TABLE users(
     user_name VARCHAR(25),
     first_name TEXT,
     last_name TEXT,
+    user_password VARCHAR(50),
     youtube_channel VARCHAR(200)
 );
 
@@ -29,6 +30,7 @@ CREATE TABLE bbqForum(
 CREATE TABLE bbqRecipies(
     id SERIAL,
     user_id INTEGER REFERENCES users(id),
+    title VARCHAR(50),
     ingredients TEXT,
     steps VARCHAR,
     temperature INTEGER,
