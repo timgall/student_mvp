@@ -14,6 +14,139 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="pageHeader">Locate Your Closest Brewery</header>
+    <header class="pageHeader">Welcome to the Bourbon and BBQ HomePage!</header>
+    <div class="navbar">
+      <a href="#home" id="homePage">Home</a>
+      <a href="https://www.breakingbourbon.com/" target="_blank"
+        >Bourbon News</a
+      >
+      <a href="https://www.texasmonthly.com/bbq/" target="_blank">BBQ News</a>
+      <a href="https://www.youtube.com/@WillSwinson" target="_blank">Help</a>
+      <div class="dropdown">
+        <button class="dropbtn">
+          Website Content
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-content">
+          <a href="#bbqrecipes">BBQ Recipes</a>
+          <a href="#bbqforum">BBQ Forum</a>
+          <a href="#bourbonforum">Bourbon Forum</a>
+          <a href="#bourbonreviews">Bourbon Reviews</a>
+          <a href="#users">User Profiles</a>
+        </div>
+      </div>
+      <!-- <div class="searchBar">
+        <div id="searchDiv" class="searchContent" style="display: none">
+          <label for="searchContent">Search</label>
+          <input type="text" id="searchContent" />
+          <button class="search">Search</button>
+        </div>
+      </div>
+      <div class="clearButton">
+        <button class="clear">Clear Results</button>
+        <div class="clearResults"></div> -->
+      <!-- </div> -->
+    </div>
+    <div>
+      <div class="newUser">
+        <p>Enter your information below and click submit.</p>
+        <div>
+          <p>Enter First Name</p>
+          <textarea
+            first_name="firstName"
+            id="firstName"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Enter Last Name</p>
+          <textarea
+            last_name="lastName"
+            id="lastName"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Enter User Name</p>
+          <textarea
+            user_name="userName"
+            id="userName"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Enter Password</p>
+          <textarea
+            user_password="userPassword"
+            id="userPassword"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Enter your Youtube Channel *if applicable</p>
+          <textarea
+            youtube_channel="youtubeChannel"
+            id="user"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <div>
+            <input
+              class="submitButton"
+              type="submitUser"
+              value="Submit"
+              id="submitUser"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="bourbonReviewContainer">
+        <textarea
+          name="bourbonReview"
+          id="user"
+          style="font-family: sans-serif; font-size: 1.23m"
+        >
+        </textarea>
+        <p>Provide a review of your favorite bourbon!</p>
+        <input type="submit" value="Submit" id="submit" />
+      </div>
+    </div>
+
+    <div>
+      <div class="bbqRecipeContainer">
+        <textarea
+          name="bbqRecipe"
+          id="user"
+          style="font-family: sans-serif; font-size: 1.23m"
+        >
+        </textarea>
+        <p>Provide a BBQ recipe!</p>
+
+        <input type="submit" value="Submit" id="submit" />
+      </div>
+    </div>
+    <div>
+      <div class="bourbonForumContainer">
+        <div>
+          <textarea
+            name="bourbonForum"
+            id="user"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Chat about Bourbon!</p>
+          <input type="submit" value="Submit" id="submit" />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="bbqForumContainer">
+        <textarea
+          name="bbqForum"
+          id="user"
+          style="font-family: sans-serif; font-size: 1.23m"
+        >
+        </textarea>
+        <p>Chat about BBQ!</p>
+
+        <input type="submit" value="Submit" id="submit" />
+      </div>
+    </div>
   </body>
 </html>

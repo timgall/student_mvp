@@ -1,0 +1,221 @@
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("lagavulin copy.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+}
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+  background-color: red;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+#quote {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 500px;
+  color: rgb(1, 1, 1);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 18px;
+}
+.selectedResult {
+  background-color: white;
+  text-align: right;
+}
+.clickedBrewery {
+  float: right;
+  display: flex;
+  justify-content: end;
+  flex-direction: column;
+  position: absolute;
+  top: 150px;
+  right: 225px;
+  background-color: rgba(255, 255, 255, 0.613);
+  color: rgb(68, 30, 4);
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.clickedBreweryHeader {
+  float: right;
+  display: flex;
+  font-size: 18px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-weight: bold;
+  justify-content: end;
+  flex-direction: column;
+  position: absolute;
+  top: 125px;
+  right: 225px;
+  background-color: rgba(255, 255, 255, 0.614);
+}
+.users {
+  background-color: white;
+  width: 500px;
+  text-align: center;
+  display: none;
+}
+.bbqforum {
+  background-color: white;
+  width: 500px;
+  text-align: center;
+  display: none;
+}
+.bbqrecipes {
+  background-color: white;
+  width: 500px;
+  text-align: center;
+  display: none;
+}
+.bourbonreviews {
+  background-color: white;
+  width: 500px;
+  text-align: center;
+  display: none;
+}
+.bourbonforum {
+  background-color: white;
+  width: 500px;
+  text-align: center;
+  display: none;
+}
+.searchContent {
+  color: white;
+}
+.searchBar {
+  float: left;
+  font-size: 16px;
+  height: 50px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+}
+.clearButton {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.pageHeader {
+  text-align: center;
+  font-size: 40px;
+  color: darkslategray;
+  font-weight: bold;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+.resultBody {
+  background-color: rgba(255, 255, 255, 0.541);
+  width: 500px;
+  color: blue;
+  text-align: center;
+}
+.homePage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.homePageHeader {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 22px;
+  font-weight: bold;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-style: italic;
+  color: rgb(40, 40, 101);
+  background-color: rgba(255, 255, 255, 0.353);
+}
+.bbqRecipeContainer {
+  display: none;
+}
+.bourbonReviewContainer {
+  display: none;
+}
+.bbqForumContainer {
+  display: none;
+}
+.newUser {
+  display: none;
+  text-align: center;
+  height: auto;
+  width: auto;
+  font-size: 20px;
+}
+p {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 160px;
+  text-align: center;
+  width: 500px;
+  background-color: aliceblue;
+  color: rgb(1, 1, 1);
+  font-style: italic;
+  font-weight: bold;
+  font-size: 18px;
+}
+textarea {
+  width: 500px;
+  height: 50px;
+  background-color: darkgray;
+}
+.submitButton {
+  text-align: center;
+}
+.bourbonForumContainer {
+  display: none;
+}
