@@ -12,7 +12,7 @@ server.use(express.static("public"));
 
 server.use(express.json());
 
-console.log(process.env.DATABASE_URL);
+// console.log(process.env.DATABASE_URL);
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -24,10 +24,16 @@ server.get("/", (req, res) => {
   console.log("its working");
 });
 server.get("/api/users", (req, res) => {
-  db.query("SELECT * FROM users").then((result) => {
-    console.log(result.rows);
-    // res.send(result.rows);
-  });
+  console.log("Hello World!");
+  db.query("SELECT * FROM users")
+    .then((result) => {
+      console.log(result.rows);
+      res.send(result.rows);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Internal server error");
+    });
 });
 
 server.get("/api/bourbonforum", (req, res) => {
