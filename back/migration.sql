@@ -1,8 +1,8 @@
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS bourbonForum;
-DROP TABLE IF EXISTS bbqForum;
-DROP TABLE IF EXISTS bbqRecipies;
-DROP TABLE IF EXISTS bourbonReviews;
+DROP TABLE IF EXISTS bourbonforum;
+DROP TABLE IF EXISTS bbqforum;
+DROP TABLE IF EXISTS bbqrecipes;
+DROP TABLE IF EXISTS bourbonreviews;
 
 CREATE TABLE users(
     id SERIAL PRIMARY KEY,
@@ -13,21 +13,21 @@ CREATE TABLE users(
     youtube_channel VARCHAR(200)
 );
 
-CREATE TABLE bourbonForum(
+CREATE TABLE bourbonforum(
     id SERIAL,
     user_id INTEGER REFERENCES users(id),
     comment VARCHAR(5000) NOT NULL,
     post_date TIMESTAMP WITH TIME ZONE
 );
 
-CREATE TABLE bbqForum(
+CREATE TABLE bbqforum(
     id SERIAL,
     user_id INTEGER REFERENCES users(id),
     comment VARCHAR(5000) NOT NULL,
     post_date TIMESTAMP WITH TIME ZONE
 );
 
-CREATE TABLE bbqRecipies(
+CREATE TABLE bbqrecipes(
     id SERIAL,
     user_id INTEGER REFERENCES users(id),
     title VARCHAR(50),
@@ -38,7 +38,7 @@ CREATE TABLE bbqRecipies(
     post_date TIMESTAMP WITH TIME ZONE
 );
 
-CREATE TABLE bourbonReviews(
+CREATE TABLE bourbonreviews(
     id SERIAL,
     user_id INTEGER REFERENCES users(id),
     bourbon_type TEXT,

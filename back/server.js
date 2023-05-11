@@ -20,37 +20,39 @@ const db = new pg.Pool({
 // const db = new pg.Pool({
 //   connectionString: "postgres://localhost:3000/mvp",
 // });
-
+server.get("/", (req, res) => {
+  console.log("its working");
+});
 server.get("/api/users", (req, res) => {
   db.query("SELECT * FROM users").then((result) => {
+    console.log(result.rows);
+    // res.send(result.rows);
+  });
+});
+
+server.get("/api/bourbonforum", (req, res) => {
+  db.query("SELECT * FROM bourbonforum").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
 
-server.get("/api/bourbonForum", (req, res) => {
-  db.query("SELECT * FROM bourbonForum").then((result) => {
+server.get("/api/bbqforum", (req, res) => {
+  db.query("SELECT * FROM bbqforum").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
 
-server.get("/api/bbqForum", (req, res) => {
-  db.query("SELECT * FROM bbqForum").then((result) => {
+server.get("/api/bbqrecipes", (req, res) => {
+  db.query("SELECT * FROM bbqrecipes").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
 
-server.get("/api/bbqRecipies", (req, res) => {
-  db.query("SELECT * FROM bbqRecipies").then((result) => {
-    res.send(result.rows);
-    console.log(result.rows);
-  });
-});
-
-server.get("/api/bourbonReviews", (req, res) => {
-  db.query("SELECT * FROM bourbonReviews").then((result) => {
+server.get("/api/bourbonreviews", (req, res) => {
+  db.query("SELECT * FROM bourbonreviews").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
