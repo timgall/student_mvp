@@ -6,13 +6,13 @@ import dotenv from "dotenv";
 dotenv.config();
 // console.log("after", process.env.DATABASE_URL);
 
+//server data
 const server = express();
 const PORT = 3000;
 server.use(express.static("public"));
-
 server.use(express.json());
-
-// console.log(process.env.DATABASE_URL);
+//
+//database pool
 
 const db = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -20,9 +20,10 @@ const db = new pg.Pool({
 // const db = new pg.Pool({
 //   connectionString: "postgres://localhost:3000/mvp",
 // });
-server.get("/", (req, res) => {
-  console.log("its working");
-});
+//
+
+//get and post user list
+
 server.get("/api/users", (req, res) => {
   console.log("Hello World!");
   db.query("SELECT * FROM users")
@@ -35,35 +36,123 @@ server.get("/api/users", (req, res) => {
       res.status(500).send("Internal server error");
     });
 });
+server.post("/api/users", (req, res) => {
+  const { user_name, first_name, last_name, user_password, youtube_channel } =
+    req.body;
+  if (!user_name || !first_name || !last_name || !user_password) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO users(user_name, first_name, last_name, user_password, youtube_Channel) VALUES($1,$2,$3,$4,$5) RETURNING *",
+    [user_name, first_name, last_name, user_password, youtube_channel]
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
 
+//get and post bourbonforum
 server.get("/api/bourbonforum", (req, res) => {
   db.query("SELECT * FROM bourbonforum").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
+server.post("/api/bourbonforum", (req, res) => {
+  const { user_id, comment, post_date } = req.body;
+  if (!user_id || !comment || !post_date) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bourbonforum(user_id, comment, post_date) VALUES($1,$2,$3) RETURNING *"
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
 
+//get and post bbqforum
 server.get("/api/bbqforum", (req, res) => {
   db.query("SELECT * FROM bbqforum").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
+server.post("/api/bbqforum", (req, res) => {
+  const { user_id, comment, post_date } = req.body;
+  if (!user_id || !comment || !post_date) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bbqforum(user_id, comment, post_date) VALUES($1,$2,$3) RETURNING *"
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
 
+//get and post bbq recipes
 server.get("/api/bbqrecipes", (req, res) => {
   db.query("SELECT * FROM bbqrecipes").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
+server.post("/api/bbqrecipes", (req, res) => {
+  const {
+    user_id,
+    title,
+    ingredients,
+    steps,
+    temperature,
+    comments,
+    post_date,
+  } = res.body;
+  if (
+    !user_id ||
+    !title ||
+    !ingredients ||
+    !steps ||
+    !temperature ||
+    !comments ||
+    !post_date
+  ) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bbqrecipes(user_id, title, ingredients, steps, temperature, comments, post_date) VALUES($1,$2,$3,$4,$5,$6,$7), RETURNING *"
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
 
+//get and post bourbonreviews
 server.get("/api/bourbonreviews", (req, res) => {
   db.query("SELECT * FROM bourbonreviews").then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
 });
+server.post("/api/bourbonreviews", (req, res) => {
+  const { user_id, bourbon_type, bourbon_name, review, notes } = req.body;
+  if (!user_id || !bourbon_type || !bourbon_name || !review || !notes) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bbqforum(user_id, bourbon_type, bourbon_name, review, notes) VALUES($1,$2,$3,$4,$5) RETURNING *"
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
 
+//listen on port
 server.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });

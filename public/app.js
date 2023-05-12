@@ -1,11 +1,19 @@
+//page buttons
 const searchBtn = $(".search");
-
+const userSerarchBtn = $("#submitUser");
+const bbqRecipesBtn = $('a[href="#bbqrecipes"]');
+const bbqForumBtn = $('a[href="#bbqforum"]');
+const bourbonForumBtn = $('a[href="#bourbonforum"]');
+const bourbonReviewsBtn = $('a[href="#bourbonreviews"]');
+//
+//page divs
 const users = $(".users");
-const bbqforum = $(".bbqforum");
-const bbqrecipes = $(".bbqforum");
-const bourbonforum = $(".bourbonforum");
-const bourbonreviews = $(".bourbonreviews");
-
+const bbqforum = $(".bbqForumContainer");
+const bbqrecipes = $(".bbqRecipeContainer");
+const bourbonforum = $(".bourbonForumContainer");
+const bourbonreviews = $(".bourbonReviewContainer");
+//
+//opening prompt
 const userName = prompt("Please Enter Your User Name.");
 console.log(userName);
 fetch("/api/users")
@@ -14,36 +22,116 @@ fetch("/api/users")
     console.log(data);
 
     let userExists = false;
+    let currentUser = null;
     data.forEach((user) => {
       if (user.user_name === userName) {
         userExists = true;
-        let passwordInput;
-        let passwordAttempts = 0;
-        let passwordAccurate = false;
-        while (!passwordAccurate && passwordAttempts < 3) {
-          passwordInput = prompt(
-            `Welcome ${userName}. Please enter your password.`
-          );
-          passwordAttempts++;
-          if (user.user_password === passwordInput) {
-            passwordAccurate = true;
-            alert(`Welcome ${userName}!`);
-            // set visibility of homescreen to welcome screen
-          } else if (passwordAttempts === 3) {
-            alert("You have exceeded the maximum number of attempts. Goodbye.");
-            window.close();
-          } else {
-            alert("Password was incorrect. Please try again.");
-          }
-        }
+        currentUser = user;
       }
     });
-    if (!userExists) {
+    if (userExists) {
+      let passwordInput;
+      let passwordAttempts = 0;
+      let passwordAccurate = false;
+      while (!passwordAccurate && passwordAttempts < 3) {
+        passwordInput = prompt(
+          `Welcome ${userName}. Please enter your password.`
+        );
+        passwordAttempts++;
+        if (currentUser.user_password === passwordInput) {
+          passwordAccurate = true;
+          alert(`Welcome ${userName}!`);
+          // set visibility of homescreen to welcome screen
+          break;
+        } else if (passwordAttempts === 3) {
+          alert("You have exceeded the maximum number of attempts. Goodbye.");
+          window.close();
+        } else {
+          alert("Password was incorrect. Please try again.");
+        }
+      }
+    } else {
       alert(`User ${userName} does not exist!`);
       $(".newUser").css("display", "block");
     }
   });
+//
+//new user div show and input
+const userNameInput = $("#userName");
+const firstName = $("#firstName");
+const lastName = $("#lastName");
+const userPassword = $("#userPassword");
+const youTubeChannel = $("#youtubeChannel");
 
+userSerarchBtn.on("click", () => {
+  fetch("/api/users", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_name: userNameInput.val().trim(),
+      first_name: firstName.val().trim(),
+      last_name: lastName.val().trim(),
+      user_password: userPassword.val().trim(),
+      youtube_channel: youTubeChannel.val(),
+    }),
+  })
+    .then((res) => {
+      if (res.ok) {
+        alert("User created successfully!");
+        $(".newUser").css("display", "none");
+        userNameInput = "";
+        firstName = "";
+        lastName = "";
+        userPassword = "";
+        youTubeChannel = "";
+      } else {
+        throw new Error("Something went wrong. Please try again.");
+      }
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
+});
+//
+//bbqrecipes clicked
+bbqRecipesBtn.on("click", () => {
+  $(".newUser").css("display", "none");
+  $(".bourbonForumContainer").css("display", "none");
+  $(".bourbonReviewContainer").css("display", "none");
+  $(".bbqForumContainer").css("display", "none");
+  $(".bbqRecipeContainer").css("display", "block");
+});
+//
+//bbqforum clicked
+bbqForumBtn.on("click", () => {
+  $(".newUser").css("display", "none");
+  $(".bourbonForumContainer").css("display", "none");
+  $(".bourbonReviewContainer").css("display", "none");
+  $(".bbqRecipeContainer").css("display", "none");
+  $(".bbqForumContainer").css("display", "block");
+});
+//
+//bourbon forum clicked
+bourbonForumBtn.on("click", () => {
+  $(".newUser").css("display", "none");
+  $(".bbqRecipeContainer").css("display", "none");
+  $(".bbqForumContainer").css("display", "none");
+  $(".bourbonReviewContainer").css("display", "none");
+  $(".bourbonForumContainer").css("display", "block");
+});
+//
+//bourbon review clicked
+bourbonReviewsBtn.on("click", () => {
+  $(".newUser").css("display", "none");
+  $(".bourbonForumContainer").css("display", "none");
+  $(".bbqRecipeContainer").css("display", "none");
+  $(".bbqForumContainer").css("display", "none");
+  $(".bourbonReviewContainer").css("display", "block");
+});
+//
+//
 fetch("/api/bbqforum")
   .then((res) => res.json())
   .then((data) => {
