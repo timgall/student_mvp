@@ -226,3 +226,8 @@ textarea {
   font-size: large;
   font-family: "Times New Roman", Times, serif;
 }
+.bbqRecipeTextArea {
+  display: none;
+  background-color: wheat;
+  color: #333;
+}

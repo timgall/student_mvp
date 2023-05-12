@@ -112,7 +112,7 @@ server.post("/api/bbqrecipes", (req, res) => {
     temperature,
     comments,
     post_date,
-  } = res.body;
+  } = req.body;
   if (
     !user_id ||
     !title ||
@@ -126,7 +126,7 @@ server.post("/api/bbqrecipes", (req, res) => {
     return;
   }
   db.query(
-    "INSERT INTO bbqrecipes(user_id, title, ingredients, steps, temperature, comments, post_date) VALUES($1,$2,$3,$4,$5,$6,$7), RETURNING *"
+    "INSERT INTO bbqrecipes(user_id, title, ingredients, steps, temperature, comments, post_date) VALUES(SELECT id FROM users WHERE user_name=$1),$2,$3,$4,$5,$6,$7), RETURNING *"
   ).then((result) => {
     res.status(201).send(result.rows[0]);
   });

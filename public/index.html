@@ -105,14 +105,14 @@
           </div>
         </div>
         <div class="bourbonReviewTextArea">
-        <p>Provide a review of your favorite bourbon!</p>
-        <textarea
-          name="bourbonReview"
-          id="user"
-          style="font-family: sans-serif; font-size: 1.23m"
-        >
-        </textarea>
-        <input type="submit" value="Submit" id="submit" />
+          <p>Provide a review of your favorite bourbon!</p>
+          <textarea
+            name="bourbonReview"
+            id="user"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <input type="submit" value="Submit" id="submit" />
         </div>
         <!-- here I'll put the previous reviews       -->
       </div>
@@ -120,35 +120,87 @@
     <div>
       <div class="bbqRecipeContainer">
         <div class="bbqRecipeAll"></div>
-          <div class="selectedBBQRecipeAll"></div>
-          <div class="refresh">
-            <button class="refreshBBQRecipes">Refresh BBQ Recipes</button>
-          </div>
-        <div class="bbqRecipeTextArea">
-        <p>Provide a BBQ recipe!</p>    
-        <textarea
-          name="bbqRecipe"
-          id="user"
-          style="font-family: sans-serif; font-size: 1.23m"
-        >
-        </textarea>
-        <input type="submit" value="Submit" id="submit" />
+        <div class="selectedBBQRecipeAll"></div>
+        <div class="addBBQRecipe">
+          <button class="addBBqRecipe">
+            Click Here To Add Your Own Recipe
+          </button>
         </div>
-<!-- here I'll put the past recipes -->
+        <div class="bbqRecipeTextArea">
+          <p>Provide a BBQ recipe!</p>
+          <div>
+            <p>Enter User Name</p>
+            <textarea
+              user_id="user_id "
+              id="user_id"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Title</p>
+            <textarea
+              title="recipeTitle"
+              id="recipeTitle"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Ingredients</p>
+            <textarea
+              ingredients="ingredients"
+              id="ingredients"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Steps</p>
+            <textarea
+              steps="steps"
+              id="steps"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Cooking Temperature</p>
+            <textarea
+              temperature="temperature"
+              id="temperature"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Comments</p>
+            <textarea
+              comments="comments"
+              id="comments"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <p>Date</p>
+            <textarea
+              post_date="post_dateRecipe"
+              id="post_dateRecipe"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <div>
+              <input
+                class="submitRecipe"
+                type="submit"
+                value="Submit"
+                id="submitRecipe"
+              />
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div>
-      <div class="bourbonForumContainer">
-        <div>
-          <div class="bourbonForumTextArea"></div>
-          <p>Chat about Bourbon!</p>          
-          <textarea
-            name="bourbonForum"
-            id="user"
-            style="font-family: sans-serif; font-size: 1.23m"
-          >
-          </textarea>
-          <input type="submit" value="Submit" id="submit" />
+      <div>
+        <div class="bourbonForumContainer">
+          <div>
+            <div class="bourbonForumTextArea"></div>
+            <p>Chat about Bourbon!</p>
+            <textarea
+              name="bourbonForum"
+              id="user"
+              style="font-family: sans-serif; font-size: 1.23m"
+            >
+            </textarea>
+            <input type="submit" value="Submit" id="submit" />
           </div>
           <!-- here I'll put the bourbon forums -->
         </div>
@@ -156,17 +208,17 @@
     </div>
     <div>
       <div class="bbqForumContainer">
-      <div class="bbqForumTextArea">
-        <p>Chat about BBQ!</p>
-        <textarea
-          name="bbqForum"
-          id="user"
-          style="font-family: sans-serif; font-size: 1.23m"
-        >
-        </textarea>
-        <input type="submit" value="Submit" id="submit" />
-      </div>
-      <!-- here I'll put the bbq forum  -->
+        <div class="bbqForumTextArea">
+          <p>Chat about BBQ!</p>
+          <textarea
+            name="bbqForum"
+            id="user"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <input type="submit" value="Submit" id="submit" />
+        </div>
+        <!-- here I'll put the bbq forum  -->
       </div>
     </div>
   </body>

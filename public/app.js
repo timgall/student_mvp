@@ -14,6 +14,7 @@ const bbqrecipes = $(".bbqRecipeContainer");
 const bourbonforum = $(".bourbonForumContainer");
 const bourbonreviews = $(".bourbonReviewContainer");
 const bourbonReviewAll = $(".bourbonReviewAll");
+const bbqRecipeTextArea = $(".bbqRecipeTextArea");
 //
 //opening prompt
 const userName = prompt("Please Enter Your User Name.");
@@ -140,8 +141,84 @@ bbqRecipesBtn.on("click", () => {
         $bbqRecipes.prepend($bbqRecipesAll);
       });
     });
+});
+const $addBBqRecipeBtn = $(".addBBqRecipe");
+$addBBqRecipeBtn.on("click", () => {
+  $(".bbqRecipeTextArea").css("display", "block");
+  $(".bbqrecipes").css("display", "none");
+});
+const $submitRecipe = $(".submitRecipe");
+const user_id = $("#user_id");
+const recipeTitle = $("#recipeTitle");
+const ingredients = $("#ingredients");
+const steps = $("#steps");
+const temperature = $("#temperature");
+const comments = $("#comments");
+const post_dateRecipe = $("#post_dateRecipe");
 
-  //@users.user_name
+$submitRecipe.on("click", () => {
+  fetch("/api/bbqrecipes", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      user_id: user_id.val().trim(),
+      title: recipeTitle.val().trim(),
+      ingredients: ingredients.val().trim(),
+      steps: steps.val().trim(),
+      temperature: temperature.val(),
+      comments: comments.val(),
+      post_date: post_dateRecipe.val(),
+    }),
+  }).then((res) => {
+    if (res.ok) {
+      alert("Recipe Added created successfully!");
+      $(".bbqRecipeTextArea").css("display", "none");
+      $(".bbqrecipes").css("display", "block");
+      user_id = "";
+      title = "";
+      ingredients = "";
+      steps = "";
+      temperature = "";
+      comments = "";
+      post_date = "";
+      fetch("/api/bbqrecipes")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          data.forEach((bbqrecipes) => {
+            console.log(users);
+            const $bbqRecipesAll = $("<div></div>").addClass("bbqrecipes");
+            const $recipeDetails = $("<div></div>").text(
+              "@" +
+                bbqrecipes.user_name +
+                " " +
+                "Title: " +
+                bbqrecipes.title +
+                " " +
+                "Ingredients: " +
+                bbqrecipes.ingredients +
+                " " +
+                "Steps: " +
+                bbqrecipes.temperature +
+                " " +
+                "Comments: " +
+                bbqrecipes.comments +
+                " " +
+                "Date Posted: " +
+                bbqrecipes.post_date
+            );
+            const $lineBreak = $("<br>");
+            $bbqRecipesAll.append($recipeDetails);
+            $bbqRecipesAll.append($lineBreak);
+            $bbqRecipes.prepend($bbqRecipesAll);
+          });
+        });
+    } else {
+      throw new Error("Something went wrong. Please try again.");
+    }
+  });
 });
 //allows us to ensure bourbon review list is updated.
 //
