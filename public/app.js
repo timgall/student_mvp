@@ -5,6 +5,7 @@ const bbqRecipesBtn = $('a[href="#bbqrecipes"]');
 const bbqForumBtn = $('a[href="#bbqforum"]');
 const bourbonForumBtn = $('a[href="#bourbonforum"]');
 const bourbonReviewsBtn = $('a[href="#bourbonreviews"]');
+const $refreshBBQRecipeBtn = $(".refreshBBQRecipes");
 //
 //page divs
 const users = $(".users");
@@ -12,6 +13,7 @@ const bbqforum = $(".bbqForumContainer");
 const bbqrecipes = $(".bbqRecipeContainer");
 const bourbonforum = $(".bourbonForumContainer");
 const bourbonreviews = $(".bourbonReviewContainer");
+const bourbonReviewAll = $(".bourbonReviewAll");
 //
 //opening prompt
 const userName = prompt("Please Enter Your User Name.");
@@ -96,13 +98,52 @@ userSerarchBtn.on("click", () => {
 });
 //
 //bbqrecipes clicked
+const $bbqRecipes = $(".selectedBBQRecipeAll");
 bbqRecipesBtn.on("click", () => {
   $(".newUser").css("display", "none");
   $(".bourbonForumContainer").css("display", "none");
   $(".bourbonReviewContainer").css("display", "none");
   $(".bbqForumContainer").css("display", "none");
   $(".bbqRecipeContainer").css("display", "block");
+  $(".bbqRecipeAll").css("display", "block");
+  $(".selectedBBQRecipeAll").css("display", "block");
+
+  fetch("/api/bbqrecipes")
+    .then((res) => res.json())
+    .then((data) => {
+      console.log(data);
+      data.forEach((bbqrecipes) => {
+        console.log(users);
+        const $bbqRecipesAll = $("<div></div>").addClass("bbqrecipes");
+        const $recipeDetails = $("<div></div>").text(
+          "@" +
+            bbqrecipes.user_name +
+            " " +
+            "Title: " +
+            bbqrecipes.title +
+            " " +
+            "Ingredients: " +
+            bbqrecipes.ingredients +
+            " " +
+            "Steps: " +
+            bbqrecipes.temperature +
+            " " +
+            "Comments: " +
+            bbqrecipes.comments +
+            " " +
+            "Date Posted: " +
+            bbqrecipes.post_date
+        );
+        const $lineBreak = $("<br>");
+        $bbqRecipesAll.append($recipeDetails);
+        $bbqRecipesAll.append($lineBreak);
+        $bbqRecipes.prepend($bbqRecipesAll);
+      });
+    });
+
+  //@users.user_name
 });
+//allows us to ensure bourbon review list is updated.
 //
 //bbqforum clicked
 bbqForumBtn.on("click", () => {
@@ -132,26 +173,26 @@ bourbonReviewsBtn.on("click", () => {
 });
 //
 //
-fetch("/api/bbqforum")
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  });
+// fetch("/api/bbqforum")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   });
 
-fetch("/api/bourbonforum")
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  });
+// fetch("/api/bourbonforum")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   });
 
-fetch("/api/bbqrecipes")
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  });
+// fetch("/api/bbqrecipes")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   });
 
-fetch("/api/bourbonreviews")
-  .then((res) => res.json())
-  .then((data) => {
-    console.log(data);
-  });
+// fetch("/api/bourbonreviews")
+//   .then((res) => res.json())
+//   .then((data) => {
+//     console.log(data);
+//   });

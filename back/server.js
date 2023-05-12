@@ -96,7 +96,9 @@ server.post("/api/bbqforum", (req, res) => {
 
 //get and post bbq recipes
 server.get("/api/bbqrecipes", (req, res) => {
-  db.query("SELECT * FROM bbqrecipes").then((result) => {
+  db.query(
+    "SELECT users.user_name AS user_name, bbqrecipes.title, bbqrecipes.ingredients, bbqrecipes.steps, bbqrecipes.temperature, bbqrecipes.comments, bbqrecipes.post_date  FROM bbqrecipes INNER JOIN users on bbqrecipes.user_id = users.id"
+  ).then((result) => {
     res.send(result.rows);
     console.log(result.rows);
   });
