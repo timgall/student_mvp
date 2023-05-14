@@ -25,7 +25,6 @@ const db = new pg.Pool({
 //get and post user list
 
 server.get("/api/users", (req, res) => {
-  console.log("Hello World!");
   db.query("SELECT * FROM users")
     .then((result) => {
       console.log(result.rows);
@@ -51,7 +50,45 @@ server.post("/api/users", (req, res) => {
   });
 });
 //
+//get and post bbq recipes
+server.get("/api/bbqrecipes", (req, res) => {
+  db.query(
+    "SELECT users.user_name AS user_name, bbqrecipes.title, bbqrecipes.ingredients, bbqrecipes.steps, bbqrecipes.temperature, bbqrecipes.comments, bbqrecipes.post_date  FROM bbqrecipes INNER JOIN users on bbqrecipes.user_id = users.id"
+  ).then((result) => {
+    res.send(result.rows);
+  });
+});
+server.post("/api/bbqrecipes", (req, res) => {
+  const {
+    user_id,
+    title,
+    ingredients,
+    steps,
+    temperature,
+    comments,
+    post_date,
+  } = req.body;
+  if (
+    !user_id ||
+    !title ||
+    !ingredients ||
+    !steps ||
+    !temperature ||
+    !comments ||
+    !post_date
+  ) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bbqrecipes(user_id, title, ingredients, steps, temperature, comments, post_date) VALUES ((SELECT id FROM users WHERE user_name=$1),$2,$3,$4,$5,$6,$7) RETURNING *",
+    [user_id, title, ingredients, steps, temperature, comments, post_date]
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
 
+//
 //get and post bourbonforum
 server.get("/api/bourbonforum", (req, res) => {
   db.query("SELECT * FROM bourbonforum").then((result) => {
@@ -88,45 +125,6 @@ server.post("/api/bbqforum", (req, res) => {
   }
   db.query(
     "INSERT INTO bbqforum(user_id, comment, post_date) VALUES($1,$2,$3) RETURNING *"
-  ).then((result) => {
-    res.status(201).send(result.rows[0]);
-  });
-});
-//
-
-//get and post bbq recipes
-server.get("/api/bbqrecipes", (req, res) => {
-  db.query(
-    "SELECT users.user_name AS user_name, bbqrecipes.title, bbqrecipes.ingredients, bbqrecipes.steps, bbqrecipes.temperature, bbqrecipes.comments, bbqrecipes.post_date  FROM bbqrecipes INNER JOIN users on bbqrecipes.user_id = users.id"
-  ).then((result) => {
-    res.send(result.rows);
-    console.log(result.rows);
-  });
-});
-server.post("/api/bbqrecipes", (req, res) => {
-  const {
-    user_id,
-    title,
-    ingredients,
-    steps,
-    temperature,
-    comments,
-    post_date,
-  } = req.body;
-  if (
-    !user_id ||
-    !title ||
-    !ingredients ||
-    !steps ||
-    !temperature ||
-    !comments ||
-    !post_date
-  ) {
-    res.sendStatus(422);
-    return;
-  }
-  db.query(
-    "INSERT INTO bbqrecipes(user_id, title, ingredients, steps, temperature, comments, post_date) VALUES(SELECT id FROM users WHERE user_name=$1),$2,$3,$4,$5,$6,$7), RETURNING *"
   ).then((result) => {
     res.status(201).send(result.rows[0]);
   });
