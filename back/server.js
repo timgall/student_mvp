@@ -87,7 +87,49 @@ server.post("/api/bbqrecipes", (req, res) => {
     res.status(201).send(result.rows[0]);
   });
 });
-
+//
+//get and post bourbonreviews
+server.get("/api/bourbonreviews", (req, res) => {
+  db.query(
+    "SELECT users.user_name AS user_name, bourbonreviews.bourbon_type, bourbonreviews.bourbon_name, bourbonreviews.review,bourbonreviews.notes FROM bourbonreviews INNER JOIN users on bourbonreviews.user_id = users.id"
+  ).then((result) => {
+    res.send(result.rows);
+  });
+});
+server.post("/api/bourbonreviews", (req, res) => {
+  const { user_id, bourbon_type, bourbon_name, review, notes } = req.body;
+  if (!user_id || !bourbon_type || !bourbon_name || !review || !notes) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bourbonreviews(user_id, bourbon_type, bourbon_name, review, notes) VALUES ((SELECT id FROM users WHERE user_name=$1),$2,$3,$4,$5)  RETURNING *"[
+      (user_id, bourbon_type, bourbon_name, review, notes)
+    ]
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
+//
+//get and post bbqforum
+server.get("/api/bbqforum", (req, res) => {
+  db.query("SELECT * FROM bbqforum").then((result) => {
+    res.send(result.rows);
+    console.log(result.rows);
+  });
+});
+server.post("/api/bbqforum", (req, res) => {
+  const { user_id, comment, post_date } = req.body;
+  if (!user_id || !comment || !post_date) {
+    res.sendStatus(422);
+    return;
+  }
+  db.query(
+    "INSERT INTO bbqforum(user_id, comment, post_date) VALUES($1,$2,$3) RETURNING *"
+  ).then((result) => {
+    res.status(201).send(result.rows[0]);
+  });
+});
 //
 //get and post bourbonforum
 server.get("/api/bourbonforum", (req, res) => {
@@ -109,49 +151,6 @@ server.post("/api/bourbonforum", (req, res) => {
   });
 });
 //
-
-//get and post bbqforum
-server.get("/api/bbqforum", (req, res) => {
-  db.query("SELECT * FROM bbqforum").then((result) => {
-    res.send(result.rows);
-    console.log(result.rows);
-  });
-});
-server.post("/api/bbqforum", (req, res) => {
-  const { user_id, comment, post_date } = req.body;
-  if (!user_id || !comment || !post_date) {
-    res.sendStatus(422);
-    return;
-  }
-  db.query(
-    "INSERT INTO bbqforum(user_id, comment, post_date) VALUES($1,$2,$3) RETURNING *"
-  ).then((result) => {
-    res.status(201).send(result.rows[0]);
-  });
-});
-//
-
-//get and post bourbonreviews
-server.get("/api/bourbonreviews", (req, res) => {
-  db.query("SELECT * FROM bourbonreviews").then((result) => {
-    res.send(result.rows);
-    console.log(result.rows);
-  });
-});
-server.post("/api/bourbonreviews", (req, res) => {
-  const { user_id, bourbon_type, bourbon_name, review, notes } = req.body;
-  if (!user_id || !bourbon_type || !bourbon_name || !review || !notes) {
-    res.sendStatus(422);
-    return;
-  }
-  db.query(
-    "INSERT INTO bbqforum(user_id, bourbon_type, bourbon_name, review, notes) VALUES($1,$2,$3,$4,$5) RETURNING *"
-  ).then((result) => {
-    res.status(201).send(result.rows[0]);
-  });
-});
-//
-
 //listen on port
 server.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);

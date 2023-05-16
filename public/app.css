@@ -135,6 +135,7 @@ body {
 }
 .pageHeader {
   text-align: center;
+  margin-bottom: 50px;
   font-size: 40px;
   color: rgb(247, 249, 249);
   font-weight: bold;
@@ -166,6 +167,9 @@ body {
 }
 h2 {
   text-align: center;
+  text-decoration: underline;
+  color: aliceblue;
+  margin-top: 10px;
 }
 .bourbonReviewContainer {
   display: none;
@@ -181,10 +185,20 @@ h2 {
   width: auto;
   font-size: 20px;
 }
-
+.userSubmitButton {
+  text-align: center;
+  font-size: large;
+  font-weight: bold;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  width: 25%;
+}
 .submitRecipe {
   text-align: center;
   margin-left: 25%;
+  font-size: large;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: bold;
+  margin-top: 10px;
   width: 50%;
 }
 .bourbonForumContainer {
@@ -198,17 +212,16 @@ h2 {
 }
 .addBBqRecipe {
   text-align: center;
-  font-size: medium;
+  font-size: x-large;
   display: none;
-  font-style: bold;
   width: 50%;
   margin-left: 25%;
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
-  background-color: rgb(92, 92, 131);
+  background-color: rgb(221, 221, 238);
 }
 textarea {
   text-align: center;
-  display: inline-block;
+  display: block;
   width: 50%;
   align-items: center;
   margin-left: 25%;
@@ -217,7 +230,7 @@ textarea {
 p {
   width: 50%;
   text-align: center;
-  margin-top: 0;
+  margin-top: 10px;
   vertical-align: middle;
   margin-bottom: 0;
   size: 16px;
@@ -225,6 +238,7 @@ p {
   font-size: large;
   font-weight: bold;
   margin-left: 25%;
+  text-decoration: underline;
 }
 
 .bbqrecipes {
@@ -233,4 +247,27 @@ p {
   width: auto;
   text-align: center;
   display: none;
+}
+.recipesTable {
+  text-decoration: underline;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+.addBourbonReview {
+  text-align: center;
+  font-size: x-large;
+  display: none;
+  width: 50%;
+  margin-left: 25%;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: rgb(221, 221, 238);
+}
+.submitBourbonReview {
+  text-align: center;
+  margin-left: 25%;
+  font-size: large;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-weight: bold;
+  margin-top: 10px;
+  width: 50%;
 }

@@ -28,10 +28,10 @@
         </button>
         <div class="dropdown-content">
           <a href="#bbqrecipes">BBQ Recipes</a>
-          <a href="#bbqforum">BBQ Forum</a>
-          <a href="#bourbonforum">Bourbon Forum</a>
+          <!-- <a href="#bbqforum">BBQ Forum</a> -->
+          <!-- <a href="#bourbonforum">Bourbon Forum</a> -->
           <a href="#bourbonreviews">Bourbon Reviews</a>
-          <a href="#users">User Profiles</a>
+          <!-- <a href="#users">User Profiles</a> -->
         </div>
       </div>
       <!-- <div class="searchBar">
@@ -52,35 +52,35 @@
       <div class="newUser">
         <p>Enter your information below and click submit.</p>
         <div>
-          <p>Enter First Name</p>
+          <p>Enter First Name:</p>
           <textarea
             first_name="firstName"
             id="firstName"
             style="font-family: sans-serif; font-size: 1.23m"
           >
           </textarea>
-          <p>Enter Last Name</p>
+          <p>Enter Last Name:</p>
           <textarea
             last_name="lastName"
             id="lastName"
             style="font-family: sans-serif; font-size: 1.23m"
           >
           </textarea>
-          <p>Enter User Name</p>
+          <p>Enter User Name:</p>
           <textarea
             user_name="userName"
             id="userName"
             style="font-family: sans-serif; font-size: 1.23m"
           >
           </textarea>
-          <p>Enter Password</p>
+          <p>Enter Password:</p>
           <textarea
             user_password="userPassword"
             id="userPassword"
             style="font-family: sans-serif; font-size: 1.23m"
           >
           </textarea>
-          <p>Enter your Youtube Channel *if applicable</p>
+          <p>Enter your Youtube Channel *if applicable:</p>
           <textarea
             youtube_channel="youtubeChannel"
             id="user"
@@ -98,48 +98,95 @@
         </div>
       </div>
       <div class="bourbonReviewContainer">
+        <button class="addBourbonReview">Click Here to Add a Review</button>
         <div class="bourbonReviewAll">
-          <div class="bourbonReviews"></div>
-          <div class="selectedBourbonReviews"></div>
-          <div class="refresh">
-            <button class="refreshBourbonReviews">Refresh Reviews</button>
+          <div id="bourbonReviewAll">
+            <h2>Bourbon Reviews</h2>
+            <table id="bourbonReviewTable">
+              <thead>
+                <tr>
+                  <th>User Name:</th>
+                  <th>Bourbon Type:</th>
+                  <th>Bourbon Name:</th>
+                  <th>Review:</th>
+                  <th>Flavor Notes:</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
           </div>
         </div>
         <div class="bourbonReviewTextArea">
-          <p>Provide a review of your favorite bourbon!</p>
+          <p>Provide a review of a bourbon</p>
+          <p>Enter User Name</p>
           <textarea
-            name="bourbonReview"
-            id="user"
+            Bourbonuser_id="BourbonUser_id"
+            id="BourbonUser_id"
             style="font-family: sans-serif; font-size: 1.23m"
           >
           </textarea>
-          <input type="submit" value="Submit" id="submit" />
+          <p>Bourbon Type:</p>
+          <textarea
+            bourbonType="bourbonType"
+            id="bourbonType"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Bourbon Name:</p>
+          <textarea
+            bourbonName="bourbonName"
+            id="bourbonName"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Review:</p>
+          <textarea
+            steps="review"
+            id="review"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <p>Flavor Notes:</p>
+          <textarea
+            temperature="notes"
+            id="notes"
+            style="font-family: sans-serif; font-size: 1.23m"
+          >
+          </textarea>
+          <div>
+            <input
+              class="submitBourbonReview"
+              type="submit"
+              value="Submit"
+              id="submitBourbonReview"
+            />
+            <div></div>
+          </div>
         </div>
-        <!-- here I'll put the previous reviews       -->
       </div>
-    </div>
-    <div>
-      <div class="bbqRecipeContainer">
-        <button class="addBBqRecipe">Click Here To Add Your Own Recipe</button>
-        <div class="bbqrecipes">
-          <div id="bbqrecipes">
-            <h2>BBQ Recipes</h2>
-            <table id="recipesTable">
-              <thead>
-                <tr>
-                  <th>User Name</th>
-                  <th>Title</th>
-                  <th>Ingredients</th>
-                  <th>Steps</th>
-                  <th>Temperature</th>
-                  <th>Comments</th>
-                  <th>Post Date</th>
-                </tr>
-              </thead>
-              <tbody>
-                <!-- Table rows will be dynamically added here -->
-              </tbody>
-            </table>
+      <div>
+        <div class="bbqRecipeContainer">
+          <button class="addBBqRecipe">
+            Click Here To Add Your Own Recipe
+          </button>
+          <div class="bbqrecipes">
+            <div id="bbqrecipes">
+              <h2>BBQ Recipes</h2>
+              <table id="recipesTable">
+                <thead>
+                  <tr>
+                    <th>User Name:</th>
+                    <th>Title:</th>
+                    <th>Ingredients:</th>
+                    <th>Steps:</th>
+                    <th>Temperature:</th>
+                    <th>Comments:</th>
+                    <th>Post Date:</th>
+                  </tr>
+                </thead>
+                <tbody></tbody>
+              </table>
+            </div>
           </div>
         </div>
         <div class="bbqRecipeTextArea">
@@ -152,42 +199,42 @@
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Title</p>
+            <p>Title:</p>
             <textarea
               title="recipeTitle"
               id="recipeTitle"
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Ingredients</p>
+            <p>Ingredients:</p>
             <textarea
               ingredients="ingredients"
               id="ingredients"
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Steps</p>
+            <p>Steps:</p>
             <textarea
               steps="steps"
               id="steps"
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Cooking Temperature</p>
+            <p>Cooking Temperature:</p>
             <textarea
               temperature="temperature"
               id="temperature"
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Comments</p>
+            <p>Comments:</p>
             <textarea
               comments="comments"
               id="comments"
               style="font-family: sans-serif; font-size: 1.23m"
             >
             </textarea>
-            <p>Date</p>
+            <p>Date:</p>
             <textarea
               post_date="post_dateRecipe"
               id="post_dateRecipe"
