@@ -1,6 +1,6 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url("lagavulin copy.jpg");
+  background-image: url("Bourbon_BBQ.jpg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -37,7 +37,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: rgb(54, 51, 51);
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
@@ -45,7 +45,7 @@ body {
 
 .dropdown-content a {
   float: none;
-  color: black;
+  color: white;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -56,16 +56,6 @@ body {
 }
 .dropdown:hover .dropdown-content {
   display: block;
-}
-#quote {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: left;
-  width: 500px;
-  color: rgb(1, 1, 1);
-  font-style: italic;
-  font-weight: bold;
-  font-size: 18px;
 }
 .selectedResult {
   background-color: white;
@@ -111,12 +101,7 @@ body {
   text-align: center;
   display: none;
 }
-.bbqrecipes {
-  background-color: white;
-  width: 500px;
-  text-align: center;
-  display: none;
-}
+
 .bourbonreviews {
   background-color: white;
   width: 500px;
@@ -151,7 +136,7 @@ body {
 .pageHeader {
   text-align: center;
   font-size: 40px;
-  color: darkslategray;
+  color: rgb(247, 249, 249);
   font-weight: bold;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
@@ -168,7 +153,6 @@ body {
   align-items: center;
   height: 100%;
 }
-
 .homePageHeader {
   text-align: center;
   margin-bottom: 50px;
@@ -180,8 +164,8 @@ body {
   color: rgb(40, 40, 101);
   background-color: rgba(255, 255, 255, 0.353);
 }
-.bbqRecipeContainer {
-  display: none;
+h2 {
+  text-align: center;
 }
 .bourbonReviewContainer {
   display: none;
@@ -192,42 +176,61 @@ body {
 .newUser {
   display: none;
   text-align: center;
+  align-items: center;
   height: auto;
   width: auto;
   font-size: 20px;
 }
-p {
-  margin-top: 20px;
-  margin-bottom: 20px;
-  margin-left: 160px;
+
+.submitRecipe {
   text-align: center;
-  width: 500px;
-  background-color: aliceblue;
-  color: rgb(1, 1, 1);
-  font-style: italic;
-  font-weight: bold;
-  font-size: 18px;
-}
-textarea {
-  width: 500px;
-  height: 50px;
-  background-color: darkgray;
-}
-.submitButton {
-  text-align: center;
+  margin-left: 25%;
+  width: 50%;
 }
 .bourbonForumContainer {
   display: none;
 }
-.bbqrecipes {
-  display: block;
-  background-color: darkslategrey;
-  color: azure;
-  font-size: large;
-  font-family: "Times New Roman", Times, serif;
-}
 .bbqRecipeTextArea {
   display: none;
-  background-color: wheat;
   color: #333;
+  align-items: center;
+  display: none;
+}
+.addBBqRecipe {
+  text-align: center;
+  font-size: medium;
+  display: none;
+  font-style: bold;
+  width: 50%;
+  margin-left: 25%;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  background-color: rgb(92, 92, 131);
+}
+textarea {
+  text-align: center;
+  display: inline-block;
+  width: 50%;
+  align-items: center;
+  margin-left: 25%;
+  background-color: rgb(255, 255, 255);
+}
+p {
+  width: 50%;
+  text-align: center;
+  margin-top: 0;
+  vertical-align: middle;
+  margin-bottom: 0;
+  size: 16px;
+  color: white;
+  font-size: large;
+  font-weight: bold;
+  margin-left: 25%;
+}
+
+.bbqrecipes {
+  background-color: white;
+  color: black;
+  width: auto;
+  text-align: center;
+  display: none;
 }

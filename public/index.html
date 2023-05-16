@@ -14,7 +14,6 @@
     <title>Document</title>
   </head>
   <body>
-    <header class="pageHeader">Welcome to the Bourbon and BBQ HomePage!</header>
     <div class="navbar">
       <a href="#home" id="homePage">Home</a>
       <a href="https://www.breakingbourbon.com/" target="_blank"
@@ -47,6 +46,8 @@
         <div class="clearResults"></div> -->
       <!-- </div> -->
     </div>
+    <header class="pageHeader">BBQ and Bourbon Lovers UNITE!</header>
+
     <div>
       <div class="newUser">
         <p>Enter your information below and click submit.</p>
@@ -119,19 +120,34 @@
     </div>
     <div>
       <div class="bbqRecipeContainer">
-        <div class="bbqRecipeAll"></div>
-        <div class="selectedBBQRecipeAll"></div>
-        <div class="addBBQRecipe">
-          <button class="addBBqRecipe">
-            Click Here To Add Your Own Recipe
-          </button>
+        <button class="addBBqRecipe">Click Here To Add Your Own Recipe</button>
+        <div class="bbqrecipes">
+          <div id="bbqrecipes">
+            <h2>BBQ Recipes</h2>
+            <table id="recipesTable">
+              <thead>
+                <tr>
+                  <th>User Name</th>
+                  <th>Title</th>
+                  <th>Ingredients</th>
+                  <th>Steps</th>
+                  <th>Temperature</th>
+                  <th>Comments</th>
+                  <th>Post Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Table rows will be dynamically added here -->
+              </tbody>
+            </table>
+          </div>
         </div>
         <div class="bbqRecipeTextArea">
           <p>Provide a BBQ recipe!</p>
           <div>
             <p>Enter User Name</p>
             <textarea
-              user_id="user_id "
+              user_id="user_id"
               id="user_id"
               style="font-family: sans-serif; font-size: 1.23m"
             >

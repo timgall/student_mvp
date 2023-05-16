@@ -19,11 +19,11 @@ const bbqRecipeTextArea = $(".bbqRecipeTextArea");
 //opening prompt
 const userName = prompt("Please Enter Your User Name.");
 console.log(userName);
+const user_idTextarea = $("#user_id");
+
 fetch("/api/users")
   .then((res) => res.json())
   .then((data) => {
-    console.log(data);
-
     let userExists = false;
     let currentUser = null;
     data.forEach((user) => {
@@ -44,6 +44,7 @@ fetch("/api/users")
         if (currentUser.user_password === passwordInput) {
           passwordAccurate = true;
           alert(`Welcome ${userName}!`);
+          user_idTextarea.val(userName);
           // set visibility of homescreen to welcome screen
           break;
         } else if (passwordAttempts === 3) {
@@ -84,7 +85,6 @@ userSerarchBtn.on("click", () => {
       if (res.ok) {
         alert("User created successfully!");
         $(".newUser").css("display", "none");
-        userNameInput = "";
         firstName = "";
         lastName = "";
         userPassword = "";
@@ -100,55 +100,41 @@ userSerarchBtn.on("click", () => {
 //
 //bbqrecipes clicked
 const $bbqRecipes = $(".selectedBBQRecipeAll");
+const $addBBqRecipeBtn = $(".addBBqRecipe");
 bbqRecipesBtn.on("click", () => {
   $(".newUser").css("display", "none");
   $(".bourbonForumContainer").css("display", "none");
   $(".bourbonReviewContainer").css("display", "none");
   $(".bbqForumContainer").css("display", "none");
   $(".bbqRecipeContainer").css("display", "block");
-  $(".bbqRecipeAll").css("display", "block");
-  $(".selectedBBQRecipeAll").css("display", "block");
-
+  $(".bbqrecipes").css("display", "flex");
+  $(".selectedBBQRecipeAll").css("display", "flex");
+  $(".addBBqRecipe").css("display", "block");
   fetch("/api/bbqrecipes")
-    .then((res) => res.json())
+    .then((response) => response.json())
     .then((data) => {
-      console.log(data);
-      data.forEach((bbqrecipes) => {
-        console.log(users);
-        const $bbqRecipesAll = $("<div></div>").addClass("bbqrecipes");
-        const $recipeDetails = $("<div></div>").text(
-          "@" +
-            bbqrecipes.user_name +
-            " " +
-            "Title: " +
-            bbqrecipes.title +
-            " " +
-            "Ingredients: " +
-            bbqrecipes.ingredients +
-            " " +
-            "Steps: " +
-            bbqrecipes.temperature +
-            " " +
-            "Comments: " +
-            bbqrecipes.comments +
-            " " +
-            "Date Posted: " +
-            bbqrecipes.post_date
-        );
-        const $lineBreak = $("<br>");
-        $bbqRecipesAll.append($recipeDetails);
-        $bbqRecipesAll.append($lineBreak);
-        $bbqRecipes.prepend($bbqRecipesAll);
+      const tableBody = document.querySelector("#recipesTable tbody");
+      data.forEach((recipe) => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${recipe.user_name}</td>
+          <td>${recipe.title}</td>
+          <td>${recipe.ingredients}</td>
+          <td>${recipe.steps}</td>
+          <td>${recipe.temperature}</td>
+          <td>${recipe.comments}</td>
+          <td>${recipe.post_date}</td>
+        `;
+        tableBody.appendChild(row);
       });
     });
 });
-const $addBBqRecipeBtn = $(".addBBqRecipe");
 $addBBqRecipeBtn.on("click", () => {
   $(".bbqRecipeTextArea").css("display", "block");
   $(".bbqrecipes").css("display", "none");
 });
 const $submitRecipe = $(".submitRecipe");
-const user_id = $("#user_id");
+const user_id = $(".user_id");
 const recipeTitle = $("#recipeTitle");
 const ingredients = $("#ingredients");
 const steps = $("#steps");
@@ -175,7 +161,8 @@ $submitRecipe.on("click", () => {
     if (res.ok) {
       alert("Recipe Added created successfully!");
       $(".bbqRecipeTextArea").css("display", "none");
-      $(".bbqrecipes").css("display", "block");
+      $(".bbqrecipes").css("display", "flex");
+      $(".addBBqRecipe").css("display", "block");
       user_id = "";
       title = "";
       ingredients = "";
@@ -184,35 +171,21 @@ $submitRecipe.on("click", () => {
       comments = "";
       post_date = "";
       fetch("/api/bbqrecipes")
-        .then((res) => res.json())
+        .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          data.forEach((bbqrecipes) => {
-            console.log(users);
-            const $bbqRecipesAll = $("<div></div>").addClass("bbqrecipes");
-            const $recipeDetails = $("<div></div>").text(
-              "@" +
-                bbqrecipes.user_name +
-                " " +
-                "Title: " +
-                bbqrecipes.title +
-                " " +
-                "Ingredients: " +
-                bbqrecipes.ingredients +
-                " " +
-                "Steps: " +
-                bbqrecipes.temperature +
-                " " +
-                "Comments: " +
-                bbqrecipes.comments +
-                " " +
-                "Date Posted: " +
-                bbqrecipes.post_date
-            );
-            const $lineBreak = $("<br>");
-            $bbqRecipesAll.append($recipeDetails);
-            $bbqRecipesAll.append($lineBreak);
-            $bbqRecipes.prepend($bbqRecipesAll);
+          const tableBody = document.querySelector("#recipesTable tbody");
+          data.forEach((recipe) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${recipe.user_name}</td>
+            <td>${recipe.title}</td>
+            <td>${recipe.ingredients}</td>
+            <td>${recipe.steps}</td>
+            <td>${recipe.temperature}</td>
+            <td>${recipe.comments}</td>
+            <td>${recipe.post_date}</td>
+          `;
+            tableBody.appendChild(row);
           });
         });
     } else {
