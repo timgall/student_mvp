@@ -62,6 +62,7 @@ fetch("/api/users")
         } else if (passwordAttempts === 3) {
           alert("You have exceeded the maximum number of attempts. Goodbye.");
           window.close();
+          $(".video").css("display", "flex");
         } else {
           alert("Password was incorrect. Please try again.");
         }
