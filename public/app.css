@@ -168,7 +168,7 @@ body {
 h2 {
   text-align: center;
   text-decoration: underline;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
   margin-top: 10px;
 }
 .bourbonReviewContainer {
@@ -242,11 +242,11 @@ p {
 }
 
 .bbqrecipes {
-  background-color: white;
-  color: black;
+  color: rgb(0, 0, 0);
   width: auto;
   text-align: center;
   display: none;
+  background-color: rgba(255, 255, 255, 0.307);
 }
 .recipesTable {
   text-decoration: underline;
@@ -270,4 +270,23 @@ p {
   font-weight: bold;
   margin-top: 10px;
   width: 50%;
+}
+.bourbonReviewAll {
+  color: rgb(0, 0, 0);
+  font-family: "Cormorant", serif;
+  font-size: 18px;
+  font-weight: 900;
+  font-style: italic;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  text-align: center;
 }

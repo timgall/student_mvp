@@ -31,6 +31,7 @@ const youTubeChannel = $("#youtubeChannel");
 const userName = prompt("Please Enter Your User Name.");
 console.log(userName);
 const user_idTextarea = $("#user_id");
+const BourbonUser_id = $("#BourbonUser_id");
 
 fetch("/api/users")
   .then((res) => res.json())
@@ -56,6 +57,7 @@ fetch("/api/users")
           passwordAccurate = true;
           alert(`Welcome ${userName}!`);
           user_idTextarea.val(userName);
+          BourbonUser_id.val(userName);
           // set visibility of homescreen to welcome screen
           break;
         } else if (passwordAttempts === 3) {
@@ -117,6 +119,7 @@ bourbonReviewsBtn.on("click", () => {
   $(".bourbonReviewTable").css("display", "block");
   $(".addBourbonReview").css("display", "block");
   $(".bourbonReviewTextArea").css("display", "none");
+  $(".bbqRecipeTextArea").css("display", "none");
 
   fetch("/api/bourbonreviews")
     .then((response) => response.json())
@@ -140,7 +143,7 @@ $addBourbonReview.on("click", () => {
   $(".bourbonReviewAll").css("display", "none");
   $(".addBourbonReview").css("display", "none");
 });
-const bourbonUser_id = $(".BourbonUser_id");
+
 const bourbonType = $(".bourbonType");
 const bourbonName = $(".bourbonName");
 const bourbonReview = $(".review");
@@ -153,7 +156,7 @@ $submitBourbonReview.on("click", () => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      user_id: user_id.val().trim(),
+      user_id: bourbonuseruser_id.val().trim(),
       bourbonType: bourbonType.val().trim(),
       bourbonName: bourbonName.val().trim(),
       review: review.val().trim(),
@@ -200,11 +203,14 @@ bbqRecipesBtn.on("click", () => {
   $(".newUser").css("display", "none");
   $(".bourbonForumContainer").css("display", "none");
   $(".bourbonReviewContainer").css("display", "none");
+  $(".bbqRecipeTextArea").css("display", "none");
+  $(".bourbonReviewTextArea").css("display", "none");
   $(".bbqForumContainer").css("display", "none");
   $(".bbqRecipeContainer").css("display", "block");
   $(".bbqrecipes").css("display", "flex");
   $(".selectedBBQRecipeAll").css("display", "flex");
   $(".addBBqRecipe").css("display", "block");
+
   console.log("I was clicked");
   fetch("/api/bbqrecipes")
     .then((response) => response.json())
@@ -291,36 +297,43 @@ $submitRecipe.on("click", () => {
 });
 //allows us to ensure bourbon review list is updated.
 //
-//bbqforum clicked
-bbqForumBtn.on("click", () => {
-  $(".newUser").css("display", "none");
-  $(".bourbonForumContainer").css("display", "none");
-  $(".bourbonReviewContainer").css("display", "none");
-  $(".bbqRecipeContainer").css("display", "none");
-  $(".bbqForumContainer").css("display", "block");
-});
-//
-//bourbon forum clicked
-bourbonForumBtn.on("click", () => {
-  $(".newUser").css("display", "none");
-  $(".bbqRecipeContainer").css("display", "none");
-  $(".bbqForumContainer").css("display", "none");
-  $(".bourbonReviewContainer").css("display", "none");
-  $(".bourbonForumContainer").css("display", "block");
-});
-//
-//bourbon review clicked
-bourbonReviewsBtn.on("click", () => {
-  $(".newUser").css("display", "none");
-  $(".bourbonForumContainer").css("display", "none");
-  $(".bbqRecipeContainer").css("display", "none");
-  $(".bbqForumContainer").css("display", "none");
-  $(".bourbonReviewContainer").css("display", "block");
-});
+
 homeBtn.on("click", () => {
   $(".newUser").css("display", "none");
   $(".bourbonForumContainer").css("display", "none");
-  $(".bbqRecipeContainer").css("display", "none");
-  $(".bbqForumContainer").css("display", "none");
   $(".bourbonReviewContainer").css("display", "none");
+  $(".bbqRecipeTextArea").css("display", "none");
+  $(".bourbonReviewTextArea").css("display", "none");
+  $(".bbqForumContainer").css("display", "none");
+  $(".bbqRecipeContainer").css("display", "none");
+  $(".bbqrecipes").css("display", "none");
+  $(".selectedBBQRecipeAll").css("display", "none");
+  $(".addBBqRecipe").css("display", "none");
 });
+//add the below if there is time.
+//bbqforum clicked
+// bbqForumBtn.on("click", () => {
+//   $(".newUser").css("display", "none");
+//   $(".bourbonForumContainer").css("display", "none");
+//   $(".bourbonReviewContainer").css("display", "none");
+//   $(".bbqRecipeContainer").css("display", "none");
+//   $(".bbqForumContainer").css("display", "block");
+// });
+// //
+// //bourbon forum clicked
+// bourbonForumBtn.on("click", () => {
+//   $(".newUser").css("display", "none");
+//   $(".bbqRecipeContainer").css("display", "none");
+//   $(".bbqForumContainer").css("display", "none");
+//   $(".bourbonReviewContainer").css("display", "none");
+//   $(".bourbonForumContainer").css("display", "block");
+// });
+// //
+// //bourbon review clicked
+// bourbonReviewsBtn.on("click", () => {
+//   $(".newUser").css("display", "none");
+//   $(".bourbonForumContainer").css("display", "none");
+//   $(".bbqRecipeContainer").css("display", "none");
+//   $(".bbqForumContainer").css("display", "none");
+//   $(".bourbonReviewContainer").css("display", "block");
+// });
