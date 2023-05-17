@@ -31,7 +31,6 @@ const youTubeChannel = $("#youtubeChannel");
 const userName = prompt("Please Enter Your User Name.");
 console.log(userName);
 const user_idTextarea = $("#user_id");
-const BourbonUser_id = $("#BourbonUser_id");
 
 fetch("/api/users")
   .then((res) => res.json())
@@ -143,34 +142,29 @@ $addBourbonReview.on("click", () => {
   $(".bourbonReviewAll").css("display", "none");
   $(".addBourbonReview").css("display", "none");
 });
-
-const bourbonType = $(".bourbonType");
-const bourbonName = $(".bourbonName");
-const bourbonReview = $(".review");
-const bourbonNotes = $(".notes");
+const BourbonUser_id = $("#BourbonUser_id");
+const bourbonType = $("#bourbonType");
+const bourbonName = $("#bourbonName");
+const review = $("#review");
+const notes = $("#notes");
 
 $submitBourbonReview.on("click", () => {
   fetch("/api/bourbonreviews", {
     method: "POST",
-    Headers: {
+    headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      user_id: bourbonuseruser_id.val().trim(),
+      user_id: BourbonUser_id.val().trim(),
       bourbonType: bourbonType.val().trim(),
       bourbonName: bourbonName.val().trim(),
       review: review.val().trim(),
-      notes: notes.val(),
+      notes: notes.val().trim(),
     }),
   }).then((res) => {
     if (res.ok) {
       alert("Review Added created successfully!");
       $(".bourbonReviewTextArea").css("display", "none");
-      user_id = "";
-      bourbonType = "";
-      bourbonName = "";
-      review = "";
-      notes = "";
       fetch("/api/bourbonreviews")
         .then((response) => response.json())
         .then((data) => {
@@ -236,7 +230,7 @@ $addBBqRecipeBtn.on("click", () => {
   $(".bbqrecipes").css("display", "none");
 });
 const $submitRecipe = $(".submitRecipe");
-const user_id = $(".user_id");
+const user_id = $("#user_id");
 const recipeTitle = $("#recipeTitle");
 const ingredients = $("#ingredients");
 const steps = $("#steps");

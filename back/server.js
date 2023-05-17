@@ -50,6 +50,12 @@ server.post("/api/users", (req, res) => {
   });
 });
 //
+//get user data
+// server.get("/api/users", (req, res)=>{
+//   db.query(
+//     ""
+//   )
+// })
 //get and post bbq recipes
 server.get("/api/bbqrecipes", (req, res) => {
   db.query(
@@ -97,19 +103,26 @@ server.get("/api/bourbonreviews", (req, res) => {
   });
 });
 server.post("/api/bourbonreviews", (req, res) => {
-  const { user_id, bourbon_type, bourbon_name, review, notes } = req.body;
-  if (!user_id || !bourbon_type || !bourbon_name || !review || !notes) {
+  const { user_id, bourbonType, bourbonName, review, notes } = req.body;
+  // Validate the required fields
+  if (!user_id || !bourbonType || !bourbonName || !review || !notes) {
     res.sendStatus(422);
     return;
   }
+  // Insert the bourbon review into the database
   db.query(
-    "INSERT INTO bourbonreviews(user_id, bourbon_type, bourbon_name, review, notes) VALUES ((SELECT id FROM users WHERE user_name=$1),$2,$3,$4,$5)  RETURNING *"[
-      (user_id, bourbon_type, bourbon_name, review, notes)
-    ]
-  ).then((result) => {
-    res.status(201).send(result.rows[0]);
-  });
+    "INSERT INTO bourbonreviews(user_id, bourbon_type, bourbon_name, review, notes) VALUES ((SELECT id FROM users WHERE user_name=$1), $2, $3, $4, $5) RETURNING *",
+    [user_id, bourbonType, bourbonName, review, notes]
+  )
+    .then((result) => {
+      res.status(201).send(result.rows[0]);
+    })
+    .catch((error) => {
+      console.error(error);
+      res.status(500).send("Internal server error");
+    });
 });
+
 //
 //get and post bbqforum
 server.get("/api/bbqforum", (req, res) => {
