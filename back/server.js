@@ -2,9 +2,9 @@ import express from "express";
 import pg from "pg";
 import dotenv from "dotenv";
 
-// console.log("before", process.env.DATABASE_URL);
+console.log("before", process.env.DATABASE_URL);
 dotenv.config();
-// console.log("after", process.env.DATABASE_URL);
+console.log("after", process.env.DATABASE_URL);
 
 //server data
 const server = express();
